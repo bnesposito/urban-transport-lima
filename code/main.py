@@ -1,10 +1,6 @@
-import pandas as pd
-import numpy as np
 import googlemaps
 import time
 import configparser
-import matplotlib.pyplot as plt
-
 
 import config
 import crawler
