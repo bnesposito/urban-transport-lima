@@ -10,6 +10,7 @@ import config
 logger = config.config_logger(__name__,10)
 random.seed(1234)
 
+
 def load_map(path):
     """ Load a geojson file.
     Args:
@@ -20,6 +21,7 @@ def load_map(path):
     """
     temp = gpd.read_file(path)
     return temp
+
 
 def plot_map(gpd_df, path, limits):
     """ Plot polygons in gpd_df. Plot a line in each limit of the figure.
@@ -66,6 +68,7 @@ def plot_map_and_points(gpd_df, path, points):
     plt.close
     return
 
+
 def boundaries(gpd_df):
     """ Extract the overall limits of multiple polygons in gpd_df (UTM).
 
@@ -81,6 +84,7 @@ def boundaries(gpd_df):
     min_x = np.min(limits['minx'])
     min_y = np.min(limits['miny'])
     return (max_x, max_y, min_x, min_y)
+
 
 def included_in_gpd_latlon(gpd_df, lat_lon):
     """ Find the name of the polygon that contains lat_lon.
@@ -100,6 +104,7 @@ def included_in_gpd_latlon(gpd_df, lat_lon):
             return gpd_df['name'][i]
     return np.nan 
 
+
 def included_in_gpd_point(gpd_df, point):
     """ Check if point is included in any polygon of gdp_df.
 
@@ -114,6 +119,7 @@ def included_in_gpd_point(gpd_df, point):
         if district.contains(point):
             return gpd_df['name'][i]
     return False 
+
 
 def random_start(gpd_df, limits):
     """ Generate a random valid point inside gpd_df.
@@ -139,6 +145,7 @@ def random_start(gpd_df, limits):
         n += 1
     return np.nan 
 
+
 def get_list_of_random_starts(gpd_df, limits, n):
     """ Generate a list of random points inside gpd_df.
 
@@ -154,7 +161,8 @@ def get_list_of_random_starts(gpd_df, limits, n):
     for i in range(n):
         output.append(random_start(gpd_df, limits))
     return output
- 
+
+
 def UTM_to_latlon(list_UTM):
     """ Converts a list of UTM points into latitude - longitude points.
 
